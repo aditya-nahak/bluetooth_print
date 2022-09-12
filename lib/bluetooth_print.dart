@@ -52,9 +52,9 @@ class BluetoothPrint {
 
   /// Gets the current state of the Bluetooth module
   Stream<int> get state async* {
-    yield await _channel.invokeMethod('state').then((s) => s);
+    yield await _channel.invokeMethod('state').then((s) => s ?? -1);
 
-    yield* _stateChannel.receiveBroadcastStream().map((s) => s);
+    yield* _stateChannel.receiveBroadcastStream().map((s) => s ?? -1);
   }
 
   /// Starts a scan for Bluetooth Low Energy devices
